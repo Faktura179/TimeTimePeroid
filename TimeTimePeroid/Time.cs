@@ -98,7 +98,7 @@ namespace TimeTimePeroid
 
         public override int GetHashCode()
         {
-            return (Seconds + (byte.MaxValue*Minutes) + (byte.MaxValue*byte.MaxValue* Hours));
+            return (Seconds + (byte.MaxValue*Minutes+1) + (byte.MaxValue*byte.MaxValue* Hours+2));
         }
 
         public static bool operator ==(Time time1, Time time2)
