@@ -63,6 +63,12 @@ namespace TimeTimePeroidTests
             Assert.AreEqual(new Time(0, 0, 0) + new Time(0,0,1), new Time(0, 0, 1));
             Assert.AreEqual(new Time(0, 0, 59) + new Time(0,0,2), new Time(0, 1, 1));
             Assert.AreEqual(new Time(0, 59, 59) + new Time(0,0,2), new Time(1, 0, 1));
+            Assert.AreEqual(new Time(23, 59, 59) + new Time(0,0,2), new Time(0, 0, 1));
+
+            Assert.AreEqual(new Time(0, 0, 1) - new Time(0, 0, 2), new Time(23, 59, 59));
+            Assert.AreEqual(new Time(0, 1, 1) - new Time(0, 0, 2), new Time(0, 0, 59));
+            Assert.AreEqual(new Time(1, 0, 1) - new Time(0, 0, 2), new Time(0, 59, 59));
+            Assert.AreEqual(new Time(2, 2, 2) - new Time(0, 0, 2), new Time(2, 2, 0));
         }
     }
 }

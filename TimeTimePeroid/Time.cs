@@ -98,7 +98,7 @@ namespace TimeTimePeroid
 
         public override int GetHashCode()
         {
-            return (Seconds + (byte.MaxValue*Minutes+1) + (byte.MaxValue*byte.MaxValue* Hours+2));
+            return (Seconds + (byte.MaxValue*(Minutes+1)+1) + (byte.MaxValue*byte.MaxValue* (Hours+1)+1));
         }
 
         public static bool operator ==(Time time1, Time time2)
@@ -148,11 +148,11 @@ namespace TimeTimePeroid
 
         public static Time operator -(Time time1, Time time2)
         {
-            int newSeconds = (time1.Seconds - time2.Seconds) % 60;
-            int carryMinutes = (time1.Seconds - time2.Seconds - 60) / 60;
-            int newMinutes = (time1.Minutes - time2.Minutes + carryMinutes) % 60;
-            int carryHours = (time1.Minutes - time2.Minutes + carryMinutes - 60) / 60;
-            int newHours = (time1.Hours - time2.Hours + carryHours) % 24;
+            int newSeconds = MathHelper.Mod((time1.Seconds - time2.Seconds), 60);
+            int carryMinutes = (time1.Seconds - time2.Seconds - 59) / 60;
+            int newMinutes = MathHelper.Mod((time1.Minutes - time2.Minutes + carryMinutes), 60);
+            int carryHours = (time1.Minutes - time2.Minutes + carryMinutes - 59) / 60;
+            int newHours = MathHelper.Mod((time1.Hours - time2.Hours + carryHours), 24);
 
             return new Time(newHours, newMinutes, newSeconds);
         }
