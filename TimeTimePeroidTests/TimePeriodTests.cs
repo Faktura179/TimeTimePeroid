@@ -67,5 +67,13 @@ namespace TimeTimePeroidTests
             Assert.IsTrue(new TimePeriod(0, 0, 0) == new TimePeriod(0, 0, 0));
             Assert.IsTrue(new TimePeriod(0, 1, 0) != new TimePeriod(0, 0, 0));
         }
+
+        [TestMethod]
+        public void TimePeriodCalculations()
+        {
+            Assert.AreEqual(new TimePeriod(12,0,0), new TimePeriod(10, 25, 30) + new TimePeriod(1, 34, 30));
+            Assert.AreEqual(new TimePeriod(12,0,0), new TimePeriod(13, 25, 30) - new TimePeriod(1, 25, 30));
+            Assert.AreEqual(new TimePeriod(12,0,0), new TimePeriod(1, 25, 30) - new TimePeriod(13, 25, 30));
+        }
     }
 }
