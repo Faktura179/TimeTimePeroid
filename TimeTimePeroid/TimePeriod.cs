@@ -8,6 +8,9 @@ namespace TimeTimePeroid
 {
     public struct TimePeriod : IEquatable<TimePeriod>, IComparable<TimePeriod>
     {
+        /// <summary>
+        /// Time period represented in number of seconds
+        /// </summary>
         public long Period { get; init; }
 
         public TimePeriod(int hours, int minutes, int seconds)

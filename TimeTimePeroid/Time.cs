@@ -8,8 +8,19 @@ namespace TimeTimePeroid
 {
     public struct Time : IEquatable<Time>, IComparable<Time>
     {
+        /// <summary>
+        /// Hour
+        /// </summary>
         public byte Hours { get; init; }
+
+        /// <summary>
+        /// Minute
+        /// </summary>
         public byte Minutes { get; init; }
+
+        /// <summary>
+        /// Second
+        /// </summary>
         public byte Seconds { get; init; }
 
         public Time(int hours, int minutes, int seconds)
@@ -75,6 +86,11 @@ namespace TimeTimePeroid
                 throw new ArgumentException("Invalid value");
         }
 
+        /// <summary>
+        /// Calculate elapsed time between this and other time point
+        /// </summary>
+        /// <param name="other">Other time point</param>
+        /// <returns>Time period - elapsed time value</returns>
         public TimePeriod ElapsedTime(Time other)
         {
             long elapsedSinceMidnightThis = Hours * 3600 + Minutes * 60 + Seconds;
