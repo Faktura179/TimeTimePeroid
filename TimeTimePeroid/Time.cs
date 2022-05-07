@@ -156,5 +156,14 @@ namespace TimeTimePeroid
 
             return new Time(newHours, newMinutes, newSeconds);
         }
+
+        public static Time operator +(Time time, TimePeriod timePeriod)
+        {
+            int hours = (int)timePeriod.Period / 3600 % 24;
+            int minutes = (int)timePeriod.Period / 60 % 60;
+            int seconds = (int)timePeriod.Period % 60;
+
+            return new Time(hours, minutes, seconds) + time;
+        }
     }
 }
