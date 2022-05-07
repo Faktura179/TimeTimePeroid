@@ -75,6 +75,15 @@ namespace TimeTimePeroid
                 throw new ArgumentException("Invalid value");
         }
 
+        public TimePeriod ElapsedTime(Time other)
+        {
+            long elapsedSinceMidnightThis = Hours * 3600 + Minutes * 60 + Seconds;
+            long elapsedSinceMidnightOther = other.Hours * 3600 + other.Minutes * 60 + other.Seconds;
+            if (other > this)
+                return new TimePeriod(elapsedSinceMidnightOther - elapsedSinceMidnightThis);
+            return new TimePeriod(elapsedSinceMidnightThis - elapsedSinceMidnightOther);
+        }
+
         public override string ToString()
         {
             return $"{Hours.ToString().PadLeft(2, '0')}:{Minutes.ToString().PadLeft(2, '0')}:{Seconds.ToString().PadLeft(2, '0')}";
@@ -164,6 +173,20 @@ namespace TimeTimePeroid
             int seconds = (int)timePeriod.Period % 60;
 
             return new Time(hours, minutes, seconds) + time;
+        }
+
+        public static Time operator +(TimePeriod timePeriod, Time time)
+        {
+            return time + timePeriod;
+        }
+
+        public static Time operator -(Time time, TimePeriod timePeriod)
+        {
+            int hours = (int)timePeriod.Period / 3600 % 24;
+            int minutes = (int)timePeriod.Period / 60 % 60;
+            int seconds = (int)timePeriod.Period % 60;
+
+            return time - new Time(hours, minutes, seconds);
         }
     }
 }

@@ -71,6 +71,15 @@ namespace TimeTimePeroidTests
             Assert.AreEqual(new Time(2, 2, 2) - new Time(2, 2, 2), new Time(0, 0, 0));
 
             Assert.AreEqual(new Time(23, 59, 58), new Time(23, 59, 59) + new Time(23, 59, 59));
+
+            Assert.AreEqual(new Time(15), new Time(12, 59, 58) + new TimePeriod(2, 0, 2));
+            Assert.AreEqual(new Time(15), new Time(12, 59, 58) + new TimePeriod(26, 0, 2));
+
+            Assert.AreEqual(new Time(15), new Time(16, 25, 14) - new TimePeriod(1, 25, 14));
+            Assert.AreEqual(new Time(15), new Time(16, 25, 14) - new TimePeriod(25, 25, 14));
+            Assert.AreEqual(new Time(23, 55, 0), new Time(0, 20, 0) - new TimePeriod(0, 25, 0));
+
+            Assert.AreEqual(new TimePeriod(5,10,24), new Time(12,24,38).ElapsedTime(new Time(7, 14, 14)));
         }
     }
 }
